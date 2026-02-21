@@ -1,8 +1,9 @@
-import * as React from 'react';
 import { usePage } from '@inertiajs/react';
-import { SidebarTrigger } from '@/components/ui/sidebar';
-import { Separator } from '@/components/ui/separator';
 import { Shield } from 'lucide-react';
+import * as React from 'react';
+import { Separator } from '@/components/ui/separator';
+import { SidebarTrigger } from '@/components/ui/sidebar';
+
 
 const getPageTitle = (url: string): string => {
     if (url === '/dashboard') return 'Dashboard';

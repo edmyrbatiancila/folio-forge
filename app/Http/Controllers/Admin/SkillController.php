@@ -36,7 +36,7 @@ class SkillController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255|unique:skills',
-            'category' => 'required|string|in:Languages, Frameworks, Tools, Platforms'
+            'category' => 'required|string|in:Languages,Frameworks,Tools,Platforms'
         ]);
 
         Skill::create($request->all());

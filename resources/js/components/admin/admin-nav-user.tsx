@@ -5,7 +5,6 @@ import {
     ChevronsUpDown,
     LogOut,
     Shield,
-    User,
 } from 'lucide-react';
 import {
     DropdownMenu,

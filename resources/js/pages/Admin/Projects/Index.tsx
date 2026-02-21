@@ -25,10 +25,10 @@ const ProjectIndex = ({
         <AdminLayout>
             <Head title="Projects" />
             
-            <div className="space-y-6 max-w-4xl mx-auto">
+            <div className="space-y-6 max-w-4xl mx-auto py-6">
                 {/* Header */}
-                <div className="flex justify-between items-center">
-                    <div>
+                <div className="flex justify-between items-center gap-4">
+                    <div className="flex flex-col">
                         <h1 className="text-2xl font-bold">Projects</h1>
                         <p className="text-gray-600">Manage your portfolio projects</p>
                     </div>
