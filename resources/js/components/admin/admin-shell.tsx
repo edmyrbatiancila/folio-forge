@@ -5,11 +5,11 @@ type Props = React.ComponentProps<'div'> & {
     children: React.ReactNode;
 };
 
-export function AdminShell({ children, className, ...props }: Props) {
+export function AdminShell({ children, ...props }: Props) {
     return (
         <div className="min-h-screen bg-orange-50 dark:bg-gray-900" {...props}>
             <SidebarProvider>
-                <div className="flex h-screen w-full">
+                <div className="flex h-screen w-full overflow-hidden">
                     {children}
                 </div>
             </SidebarProvider>

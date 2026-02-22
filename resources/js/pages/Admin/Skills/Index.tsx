@@ -1,44 +1,15 @@
 import { Head, Link, router } from "@inertiajs/react";
-import { Plus, Edit, Trash2, Code, Wrench, Layers, Cloud } from "lucide-react";
+import { Plus, Edit, Trash2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { getCategoryColor, getCategoryIcon } from "@/hooks/Admin/Skills/category";
 import AdminLayout from "@/layouts/AdminLayout";
 import type { Skill } from "@/types/Admin/Skills/ISkills";
 
 interface Props {
     skills: Skill[];
 }
-
-const getCategoryIcon = (category: string) => {
-    switch (category) {
-        case 'Languages':
-            return <Code className="h-4 w-4" />;
-        case 'Frameworks':
-            return <Layers className="h-4 w-4" />;
-        case 'Tools':
-            return <Wrench className="h-4 w-4" />;
-        case 'Platforms':
-            return <Cloud className="h-4 w-4" />;
-        default:
-            return <Code className="h-4 w-4" />;
-    }
-};
-
-const getCategoryColor = (category: string) => {
-    switch (category) {
-        case 'Languages':
-            return 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300';
-        case 'Frameworks':
-            return 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300';
-        case 'Tools':
-            return 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300';
-        case 'Platforms':
-            return 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-300';
-        default:
-            return 'bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-300';
-    }
-};
 
 const SkillsIndex = ({ skills }: Props) => {
     const handleDelete = (id: number) => {
@@ -83,7 +54,7 @@ const SkillsIndex = ({ skills }: Props) => {
                         </CardContent>
                     </Card>
                 ) : (
-                    <div className="grid gap-6">
+                    <div className="grid gap-6 max-w-4xl mx-auto">
                         {skills.map((skill) => (
                             <Card key={skill.id} className="hover:shadow-md transition-shadow">
                                 <CardHeader>
@@ -110,6 +81,7 @@ const SkillsIndex = ({ skills }: Props) => {
                                             <Link href={`/admin/skills/${skill.id}/edit`}>
                                                 <Button variant="outline" size="sm">
                                                     <Edit className="w-4 h-4" />
+                                                    Edit
                                                 </Button>
                                             </Link>
                                             <Button
@@ -119,6 +91,7 @@ const SkillsIndex = ({ skills }: Props) => {
                                                 className="text-red-600 hover:text-red-700 hover:bg-red-50"
                                             >
                                                 <Trash2 className="w-4 h-4" />
+                                                Delete
                                             </Button>
                                         </div>
                                     </div>

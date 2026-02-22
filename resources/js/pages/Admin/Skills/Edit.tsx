@@ -8,19 +8,22 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { skillCategories } from "@/hooks/Admin/Skills/skill-categories";
 import AdminLayout from "@/layouts/AdminLayout";
-import type { SkillFormData } from "@/types/Admin/Skills/ISkills";
+import type { SkillFormData, Skill } from "@/types/Admin/Skills/ISkills";
 
 
+interface Props {
+    skill: Skill;
+}
 
-const SkillCreate = () => {
+const SkillEdit = ({ skill }: Props) => {
     const { data, setData, post, processing, errors } = useForm<SkillFormData>({
-        name: '',
-        category: '',
+        name: skill.name || '',
+        category: skill.category || ''
     });
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        post('/admin/skills');
+        post(`/admin/skills/${skill.id}`);
     };
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -35,8 +38,8 @@ const SkillCreate = () => {
 
     return (
         <AdminLayout>
-            <Head title="Create Skill" />
-            
+            <Head title={`Edit Skill - ${skill.name}`} />
+
             <div className="max-w-2xl mx-auto">
                 {/* Header */}
                 <div className="flex items-center gap-4 mb-6">
@@ -46,9 +49,9 @@ const SkillCreate = () => {
                             Back to Skills
                         </Button>
                     </Link>
-                    <div>
-                        <h1 className="text-2xl font-bold">Create New Skill</h1>
-                        <p className="text-gray-600">Add a new skill to your portfolio</p>
+                    <div className="flex flex-col">
+                        <h1 className="text-2xl font-bold">Edit Skill</h1>
+                        <p className="text-gray-600">Update your skill information</p>
                     </div>
                 </div>
 
@@ -57,21 +60,21 @@ const SkillCreate = () => {
                     <CardHeader>
                         <CardTitle>Skill Details</CardTitle>
                         <CardDescription>
-                            Fill in the information for your new skill
+                            Update the information below to modify your skill.
                         </CardDescription>
                     </CardHeader>
                     <CardContent>
-                        <form 
-                            onSubmit={handleSubmit} 
+                        <form
+                            onSubmit={ handleSubmit }
                             className="space-y-6"
                         >
                             {/* Skill Name */}
                             <div className="space-y-2">
-                                <Label htmlFor="name">Skill Name *</Label>
-                                <Input
+                                <Label>Skill Name</Label>
+                                <Input 
                                     id="name"
-                                    value={data.name}
-                                    onChange={handleInputChange}
+                                    value={ data.name }
+                                    onChange={ handleInputChange }
                                     type="text"
                                     placeholder="e.g., React, Laravel, Docker"
                                 />
@@ -104,7 +107,7 @@ const SkillCreate = () => {
                                 >
                                     <Save className="w-4 h-4 mr-2" />
                                     {
-                                        processing ? 'Creating...' : 'Create Skill'
+                                        processing ? 'Updating...' : 'Update Skill'
                                     }
                                 </Button>
                                 <Link href="/admin/skills">
@@ -124,4 +127,4 @@ const SkillCreate = () => {
     );
 };
 
-export default SkillCreate;
+export default SkillEdit;

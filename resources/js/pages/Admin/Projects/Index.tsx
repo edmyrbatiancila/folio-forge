@@ -57,7 +57,7 @@ const ProjectIndex = ({
                         </CardContent>
                     </Card>
                 ) : (
-                    <div className="grid gap-6">
+                    <div className="grid gap-6 max-w-6xl mx-auto">
                         {projects.map((project) => (
                             <Card key={project.id}>
                                 <CardHeader>
