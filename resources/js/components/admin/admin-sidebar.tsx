@@ -1,11 +1,9 @@
-import { Link, usePage } from '@inertiajs/react';
+import { Link } from '@inertiajs/react';
 import { 
     Home, 
     FolderOpen, 
     Brain, 
-    Settings,
     Shield,
-    ChevronRight
 } from 'lucide-react';
 import { AdminNavMain } from '@/components/admin/admin-nav-main';
 import { AdminNavUser } from '@/components/admin/admin-nav-user';
@@ -22,7 +20,7 @@ import type { NavItem } from '@/types';
 
 const adminNavItems: NavItem[] = [
     {
-        title: 'Dashboard',
+        title: 'Admin Dashboard',
         href: '/dashboard',
         icon: Home,
     },
